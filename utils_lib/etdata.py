@@ -185,7 +185,7 @@ class ETData():
 
             if kwargs['source']=='array':
                 if not fpath.dtype == ETData.dtype:
-                    print "Error. Data types do not match"
+                    print("Error. Data types do not match")
                     return False
                 self.data = fpath
 
