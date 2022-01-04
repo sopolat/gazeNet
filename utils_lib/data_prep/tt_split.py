@@ -130,7 +130,7 @@ if not os.path.exists(ddir):
     mkpath(ddir)
 
     #try to convert from mat
-    fdir_mat = 'EyeMovementDetectorEvaluation/annotated_data/images'
+    fdir_mat = 'EyeMovementDetectorEvaluation/annotated_data/originally uploaded data/images'
     FILES_MAT = glob.glob('%s/%s/*.mat'% (args.root, fdir_mat))
 
     for fpath in tqdm(FILES_MAT):
@@ -269,7 +269,8 @@ data['test_RA'] = [(_i, _d) for _m, (_i, _d) in zip(mask['coder'].values, data['
 
 
 #clean data; #splits data by removing dataloss
-for part in data.keys():
+data_copy = data.copy()  
+for part in data_copy.keys():
     data['%s_clean'%part] = []
     for trid, (i, d) in enumerate(data[part]): #iterates over files
         dd = np.split(d, np.where(np.diff(d['status'].astype(np.int0)) != 0)[0]+1)
